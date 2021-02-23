@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]  
+  before_action :authenticate_user!, except: [:index, :show]  
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -11,8 +11,9 @@ class PrototypesController < ApplicationController
   end
   
   def create
-    if Prototype.create(prototype_params)
-    redirect_to root_path
+    @prototype= Prototype.create(prototype_params)
+    if @prototype.save
+      redirect_to root_path
     else
       render :new
     end
@@ -29,8 +30,8 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(prototype_params)
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
       redirect_to prototype_path
     else
       render :edit
@@ -49,7 +50,9 @@ class PrototypesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
+    @prototype = Prototype.find(params[:id])
+    if user_signed_in? && current_user.id == @prototype.user_id
+    else
       redirect_to action: :index
     end
   end

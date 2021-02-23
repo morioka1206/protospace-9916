@@ -4,10 +4,12 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@comment.prototype)
     else
-      render "/prototypes/show"
+      @prototype = @comment.prototype
+      @comments = @prototype.comments
+      render "prototypes/show"
     end
   end
-
+  
 
   def comment_params
   params.require(:comment).permit(:text).merge(user_id: current_user.id, prototype_id: params[:prototype_id] )
