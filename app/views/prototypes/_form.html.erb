@@ -1,0 +1,25 @@
+<%= form_with model: @prototype, local: true do |f|%>
+  <div class="field">
+    <%= f.label :title, @prototype.title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :catch_copy, @prototype.catch_copy %><br />
+    <%= f.text_area :catch_copy, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :concept, @prototype.concept %><br />
+    <%= f.text_area :concept, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, @prototype.image %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>
