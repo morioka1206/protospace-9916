@@ -42,3 +42,8 @@
 ### Association
 - belongs_to :user
 - belongs_to :prototype
+
+https://gyazo.com/36a522f642c52bbb4d476c9ff2659455
+
+
+[![Image from Gyazo](https://i.gyazo.com/36a522f642c52bbb4d476c9ff2659455.png)](https://gyazo.com/36a522f642c52bbb4d476c9ff2659455)
